@@ -1,7 +1,4 @@
-﻿using Microsoft.Graph;
-using System;
-using System.Collections.Generic;
-using ToDoApplication.Models;
+﻿using ToDoApplication.Models;
 using Xunit;
 
 namespace ToDoApplicationTest2
@@ -18,9 +15,7 @@ namespace ToDoApplicationTest2
             Todo todo = new Todo(1,"Hello");
             //Accert
             Assert.Equal(todoId,todo.todoId);
-            Assert.Equal(description,todo.description);
-
-            
+            Assert.Equal(description, todo.description);
         }
     }
 }
