@@ -8,30 +8,23 @@ namespace ToDoApplicationTest3
         [Fact]
         public void PersonSequencerSetId()
         {
-            //Arrnge
-            int personId = 1;
-
-           //Act
-            PersonSequencer per = new PersonSequencer();
-             object result = per.nextPersonId(personId);
-
-            //Accert
-            Assert.Equal(2, result);
-         }
+            //Act
+            PersonSequencer.nextPersonId();
+            PersonSequencer.nextPersonId();
+            //Assert
+            Assert.Equal(2, PersonSequencer.personId);
+        }
 
         [Fact]
         public void PersonSequencerReSetId()
         {
-            //Arrnge
-            int personId = 1;
-
             //Act
-            PersonSequencer per1 = new PersonSequencer();
-            var result = per1.Reset(personId);
-
-            //Accert
-            Assert.Equal(0, result);
-
+            PersonSequencer.nextPersonId();
+            PersonSequencer.nextPersonId();
+            PersonSequencer.nextPersonId();
+            PersonSequencer.Reset();
+            //Assert
+            Assert.Equal(0, PersonSequencer.personId);
         }
-    } 
+    }
 }

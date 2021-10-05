@@ -10,7 +10,7 @@ namespace ToDoApplication.Models
         public string description;
         private bool done;
         private Person assignee;
-        public Todo(int todoId, string description)
+        public Todo(int todoId, string description, string lastName)
         {
             this.todoId = todoId;
             this.description = description;

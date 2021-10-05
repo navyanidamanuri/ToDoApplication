@@ -6,8 +6,8 @@ namespace ToDoApplication.Data
 {
     public class TodoSequencer
     {
-        public static int todoId;
-        public static int nextToDoId(int todoId)
+        public static int todoId = 0;
+        public static int nextToDoId()
         {
             todoId++;
             return todoId;
@@ -16,10 +16,5 @@ namespace ToDoApplication.Data
         {
             todoId = 0;
         }
-
-        public object nexttodoId(int todoId)
-        {
-            throw new NotImplementedException();
-        }
-    }
+      }
 }

@@ -8,29 +8,22 @@ namespace ToDoApplicationTest4
         [Fact]
         public void TodoSequencerSetId()
         {
-            //Arrnge
-            int todoId = 1;
-
             //Act
-            TodoSequencer todo = new TodoSequencer();
-            object result = todo.nexttodoId(todoId);
-
-            //Accert
-            Assert.Equal(2, result);
+            TodoSequencer.nextToDoId();
+            TodoSequencer.nextToDoId();
+            //Assert
+            Assert.Equal(2, TodoSequencer.todoId);
         }
 
         [Fact]
         public void TodoSequencerReSetId()
         {
-            //Arrnge
-            int todoId = 1;
-
             //Act
-            TodoSequencer todo1 = new TodoSequencer();
-            object result = todo1.Reset();
-
-            //Accert
-            Assert.Equal(0, result);
+            TodoSequencer.nextToDoId();
+            TodoSequencer.nextToDoId();
+            TodoSequencer.Reset();
+            //Assert
+            Assert.Equal(0, TodoSequencer.todoId);
 
         }
     }
