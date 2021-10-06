@@ -30,11 +30,10 @@ namespace ToDoApplication.Data
             return null;
         }
 
-        public Todo UpdateTodoArray(string firstName, string lastName)
+        public Todo UpdateTodoArray(string description, Person assignee, bool isDone)
         {
-            var TodoSequencer = new TodoSequencer();
             var nextTodoId = TodoSequencer.nextToDoId();
-            var todo = new Todo(nextTodoId, firstName, lastName);
+            var todo = new Todo(nextTodoId, description, assignee, isDone);
             Array.Resize(ref TodoArray, Size() + 1);
             TodoArray[Size() - 1] = todo;
             return todo;
@@ -45,30 +44,79 @@ namespace ToDoApplication.Data
         }
         public Todo[] FindByDoneStatus(bool doneStatus)
         {
-            foreach (var Todo in TodoArray)
+            Todo[] todoDoneArray = new Todo[] { };
+            int count = 0;
+            foreach (var t in TodoArray)
             {
-                if (Todo.doneStatus == doneStatus)
+                if (t.done == doneStatus)
                 {
-                    return true;
+                    todoDoneArray[count] = t;
+                    count++;
                 }
             }
-            return false;
-
+            return todoDoneArray;
         }
-        public Todo[] FindByAssignee(int personId)
+        public Todo[] FindByAssignee(int todoId)
         {
-           
+            Todo[] todoPersonArray = new Todo[] { };
+            int count = 0;
+            foreach (var t in TodoArray)
+            {
+                if (t.todoId == todoId)
+                {
+                    Array.Resize(ref todoPersonArray, todoPersonArray.Length + 1);
+                    todoPersonArray[count] = t;
+                    count++;
+                }
+            }
+            return todoPersonArray;
         }
         public Todo[] FindByAssignee(Person assignee)
         {
-
+            Todo[] todoPersonArray = new Todo[] { };
+            int count = 0;
+            foreach (var t in TodoArray)
+            {
+                if (t?.assignee?.personId == assignee.personId && t?.assignee?.firstName == assignee.firstName && t?.assignee?.lastName == assignee.lastName)
+                {
+                    Array.Resize(ref todoPersonArray, todoPersonArray.Length + 1);
+                    todoPersonArray[count] = t;
+                    count++;
+                }
+            }
+            return todoPersonArray;
         }
         public Todo[] FindUnassignedTodoItems()
         {
-
+            Todo[] todoUnassignedArray = new Todo[] { };
+            int count = 0;
+            foreach (var t in TodoArray)
+            {
+                if (t.assignee == null)
+                {
+                    Array.Resize(ref todoUnassignedArray, todoUnassignedArray.Length + 1);
+                    todoUnassignedArray[count] = t;
+                    count++;
+                }
+            }
+            return todoUnassignedArray;
         }
 
+        public void RemoveObjectFromTodoArray(int index)
+        {
+            for (int i = 0; i < TodoArray.Length; i++)
+            {
+                if (i == index)
+                {
+                    for (int j = i + 1; j < TodoArray.Length; i++, j++)
+                    {
+                        TodoArray[i] = TodoArray[j];
+                    }
+                    Array.Resize(ref TodoArray, TodoArray.Length - 1);
+                    break;
+                }
+            }
+        }
 
     }
-
-}
+ }

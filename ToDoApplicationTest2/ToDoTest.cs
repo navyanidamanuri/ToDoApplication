@@ -11,11 +11,13 @@ namespace ToDoApplicationTest2
             //Arrnge
             int todoId = 1;
             string description = "Hello";
+            bool done = true;
+            Person assignee = navya;
            //Act
-            Todo todo = new Todo(1,"Hello");
+            Todo todo = new Todo(1,"Hello",'navya',true);
             //Accert
             Assert.Equal(todoId,todo.todoId);
-            Assert.Equal(description, todo.description);
+            Assert.Equal(description, todo.assignee);
         }
     }
 }
